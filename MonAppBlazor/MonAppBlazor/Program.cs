@@ -10,6 +10,13 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddScoped<WeatherForecastService>();
+builder.Services.AddScoped<ProduitsService>();
+
+builder.Services.AddHttpClient("Api", config =>
+{
+    config.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");
+    config.BaseAddress = new Uri("https://localhost:7038/");
+});
 
 var app = builder.Build();
 

@@ -1,0 +1,34 @@
+﻿<h1 class="text-center mb-5 mt-5">Liste des produits</h1>
+
+@if (produits is not null)
+{
+    <div class="row">
+@*         @if (IsAdmin)
+        {
+            <div class="col-4 offset-4">
+                <button style="width:100%" @onclick="() => GoCreate()" class="btn btn-success mb-5">Create</button>
+            </div>
+        } *@
+        <div class="col-8 offset-2">
+            <table class="table">
+                <thead>
+                <th>Nom</th>
+                <th>Source</th>
+                <th>Icone</th>
+                <th>Details</th>
+                </thead>
+                <tbody>
+                    @foreach (ProduitsEntity produit in produits)
+                    {
+                        <tr class="align-middle">
+                            <td>@produit.Nom</td>
+                            <td>@produit.Source</td>
+                            <td><img src="data:image/png;base64,@produit.Icone" /></td>
+                            <td><button @onclick="() => VoirDetails(produit.Id)" class="btn btn-primary">Details</button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

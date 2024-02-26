@@ -17,11 +17,18 @@ namespace MonAppBlazor.Mobile
 
             builder.Services.AddMauiBlazorWebView();
 
+            builder.Services.AddHttpClient("Api", config =>
+            {
+                config.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");
+                config.BaseAddress = new Uri("https://localhost:7038/");
+            });
+
 #if DEBUG
-    		builder.Services.AddBlazorWebViewDeveloperTools();
+            builder.Services.AddBlazorWebViewDeveloperTools();
     		builder.Logging.AddDebug();
 #endif
             builder.Services.AddSingleton<WeatherForecastService>();
+            builder.Services.AddScoped<ProduitsService>();
             return builder.Build();
         }
     }
